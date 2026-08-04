@@ -1,0 +1,60 @@
+/* ============ FX: прогресс-бар скролла (реагирует на колесо/скролл) ============ */
+#scrollbar{
+  position:fixed;top:0;left:0;height:4px;width:0%;z-index:1000;
+  background:linear-gradient(90deg,var(--orange),#FFB02E,#FFD36B);
+  border-radius:0 3px 3px 0;pointer-events:none;
+}
+#scrollbar::after{
+  content:"";position:absolute;right:-3px;top:-2px;bottom:-2px;width:8px;
+  background:var(--orange);border-radius:3px;
+}
+
+/* ============ FX: блик, следующий за курсором ============ */
+.glow{position:relative;overflow:hidden;isolation:isolate}
+.glow::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+  transition:opacity .18s;
+  background:radial-gradient(150px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.65),rgba(255,255,255,0) 72%);
+}
+.glow:hover::before{opacity:1}
+.glow>*{position:relative;z-index:1}
+
+/* ============ FX: 3D-наклон постера за курсором ============ */
+[data-tilt]{transform-style:preserve-3d;will-change:transform;transition:transform .3s}
+
+/* ============ FX: параллакс при скролле ============ */
+[data-parallax]{will-change:transform}
+
+/* ============ ДЕКОР: рамённые волны ============ */
+.fx-wave{
+  display:block;width:100%;height:34px;fill:var(--cream);
+  position:relative;z-index:2;margin-bottom:-1px;
+}
+.fx-wave.flip{transform:scaleY(-1)}
+
+/* ============ ДЕКОР: горошек (пастельный, для паппер-фонов) ============ */
+.fx-dots{
+  background-image:radial-gradient(rgba(35,31,27,.08) 2px, transparent 2.5px);
+  background-size:26px 26px;
+}
+.fx-dots-light{
+  background-image:radial-gradient(rgba(255,255,255,.14) 2px, transparent 2.5px);
+  background-size:26px 26px;
+}
+
+/* ============ ДЕКОР: спираль-нарумаки (свёрнутая лапша) ============ */
+.fx-naruto{
+  width:260px;height:260px;pointer-events:none;opacity:.5;
+  filter:drop-shadow(3px 4px 0 rgba(35,31,27,.12));
+}
+.fx-naruto.small{width:150px;height:150px}
+
+/* ============ ДЕКОР: узор-чешуя данчхон ============ */
+.fx-pattern{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* ============ МЕЛОЧИ ============ */
+.nav.scrolled{box-shadow:0 4px 14px rgba(35,31,27,.14)}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none !important}
+  [data-parallax],[data-tilt]{transform:none !important}
+}

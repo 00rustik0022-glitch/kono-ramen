@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О KONO — история, формат и команда</title>
+<meta name="description" content="Как корейские круглосутки KONO приехали из Сеула в Россию: первый домик, формат «готовь сам», атмосфера аниме и 9 домиков в 5 городах.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='28' fill='%23FF5500'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='white' font-family='Arial Black' font-weight='900'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F3E7CD;
+  --ink:#231F1B;
+  --paper:#FFFDF6;
+  --orange:#FF5500;
+  --orange-d:#E04A00;
+  --teal:#009B85;
+  --teal-d:#007E6D;
+  --red:#E5484D;
+  --text-dim:#6A635A;
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:3px 3px 0 var(--ink);
+  --r:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.logo-font{font-family:'Unbounded','Inter',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:50;background:var(--cream);
+  border-bottom:3px solid var(--ink);display:flex;align-items:center;
+  justify-content:space-between;padding:12px 24px;
+}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:9px 14px;border-radius:999px;font-weight:700;font-size:14.5px;
+  transition:.15s;border:2px solid transparent;
+}
+.nav-links a:hover{background:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.nav-links a.nav-cta:hover{background:var(--orange);color:#fff}
+.nav-links a.active{background:var(--ink);color:#fff}
+.nav-cta{
+  background:var(--orange);color:#fff !important;border-color:var(--ink) !important;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.burger{display:none;background:var(--ink);color:#fff;border:0;width:44px;height:44px;border-radius:12px;font-size:22px;cursor:pointer}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;background:var(--teal);overflow:hidden;
+  border-bottom:6px solid var(--ink);padding:80px 0 88px;
+}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(0,0,0,.06), transparent 40%)}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:840px;margin:0 auto}
+.hero .tag{
+  display:inline-block;background:var(--cream);color:var(--ink);border:3px solid var(--ink);
+  border-radius:999px;padding:7px 18px;font-weight:900;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;box-shadow:3px 3px 0 var(--ink);margin-bottom:22px;
+}
+.hero h1{
+  color:#fff;font-size:clamp(36px,5.8vw,62px);line-height:1.06;font-weight:900;
+  text-shadow:3px 4px 0 rgba(0,0,0,.22);margin-bottom:20px;
+}
+.hero h1 em{color:var(--cream);font-style:normal;display:block}
+.hero-sub{color:#EFFFFA;font-size:18.5px;font-weight:600;max-width:640px;margin:0 auto 30px;line-height:1.65}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:16px;
+  border:3px solid var(--ink);font-weight:900;font-size:15.5px;cursor:pointer;
+  box-shadow:5px 5px 0 var(--ink);transition:.15s;color:var(--ink);
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-white{background:#fff}
+.hero-link{
+  display:inline-block;margin-top:24px;background:transparent;color:#EFFFFA;
+  font-weight:800;font-size:14.5px;padding:10px 4px;border-bottom:3px solid var(--cream);
+}
+.hero-link:hover{color:#fff}
+
+/* ============ SECTION HEAD ============ */
+.sec{padding:88px 0}
+.sec-head{max-width:720px;margin:0 auto 54px;text-align:center;position:relative}
+.sec-head .tag{
+  display:inline-block;background:var(--orange);color:#fff;border:3px solid var(--ink);
+  border-radius:999px;padding:6px 16px;font-weight:900;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;box-shadow:3px 3px 0 var(--ink);margin-bottom:20px;
+}
+.sec-head h2{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.08}
+.sec-head h2 em{font-style:normal;color:var(--orange)}
+.sec-head p{color:var(--text-dim);font-size:17px;font-weight:600;margin-top:14px}
+
+/* ============ STORY / TIMELINE ============ */
+#story{background:var(--paper)}
+.tl{display:flex;flex-direction:column;gap:26px;max-width:860px;margin:0 auto;position:relative}
+.tl::before{content:"";position:absolute;left:23px;top:8px;bottom:8px;width:3px;background:var(--ink)}
+.tl-item{position:relative;padding-left:76px}
+.tl-num{
+  position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;
+  background:var(--orange);color:#fff;border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-weight:900;font-size:16px;
+  box-shadow:var(--shadow-sm);z-index:2;
+}
+.tl-item h4{font-weight:900;font-size:19px;margin-bottom:6px}
+.tl-item p{font-size:15.5px;color:#3A342C;font-weight:500;line-height:1.65}
+.tl-item p b{color:var(--orange)}
+.tl-card{
+  background:var(--cream);border:3px solid var(--ink);border-radius:var(--r);
+  padding:20px 24px;box-shadow:var(--shadow-sm);
+}
+.tl-card.big{background:var(--teal);color:#E8FFFA;border-width:4px;box-shadow:var(--shadow)}
+.tl-card.big h4{color:#fff}
+.tl-card.big p{color:#D3F5ED}
+
+/* ============ CONCEPT / WHY ============ */
+#concept{background:var(--cream)}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.why-card{
+  background:var(--paper);border:3px solid var(--ink);border-radius:var(--r);
+  padding:26px 24px;box-shadow:var(--shadow);transition:.2s;
+}
+.why-card:hover{transform:translate(-3px,-3px)}
+.why-card .wico{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:18px;border:3px solid var(--ink);box-shadow:var(--shadow-sm)}
+.why-card h4{font-size:18px;font-weight:900;margin-bottom:8px}
+.why-card p{font-size:14.5px;color:var(--text-dim);font-weight:600;line-height:1.55}
+.why-card p b{color:var(--orange)}
+.quote-poster{
+  background:var(--teal);border:4px solid var(--ink);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:36px;margin-top:44px;text-align:center;transform:rotate(-.6deg);
+}
+.quote-poster h3{font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.25;margin-bottom:14px}
+.quote-poster p{color:#D3F5ED;font-weight:600;font-size:15px}
+
+/* ============ TEAM ============ */
+#team{background:var(--paper)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:var(--cream);border:3px solid var(--ink);border-radius:var(--r);
+  padding:24px 22px;box-shadow:var(--shadow-sm);transition:.2s;text-align:center;
+}
+.tcard:hover{transform:translate(-3px,-3px) rotate(-1deg)}
+.tcard .tico{
+  width:74px;height:74px;border-radius:50%;background:var(--orange);color:#fff;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+  font-family:'Unbounded';font-weight:900;font-size:26px;box-shadow:var(--shadow-sm);border:3px solid var(--ink);
+}
+.tcard h4{font-size:16.5px;font-weight:900;margin-bottom:4px}
+.tcard small{display:block;color:var(--orange);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.tcard p{font-size:13.5px;color:var(--text-dim);font-weight:600;line-height:1.55}
+
+/* ============ CTA ============ */
+#contact{background:var(--cream)}
+.social-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.schip{
+  background:#fff;border:3px solid var(--ink);border-radius:999px;padding:12px 20px;
+  font-weight:800;font-size:14.5px;box-shadow:var(--shadow-sm);transition:.15s;
+}
+.schip:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);background:var(--cream)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#fff;position:relative}
+.foot-top{
+  background:var(--orange);border-top:4px solid var(--ink);color:#fff;
+  padding:60px 0;text-align:center;
+}
+.foot-top h3{font-size:clamp(22px,3.4vw,34px);font-weight:900;margin-bottom:24px}
+.foot-top .btn{background:#fff;color:var(--ink)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding:52px 0 40px}
+.foot-brand p{color:#CFC9C0;font-weight:600;font-size:14.5px;line-height:1.6;max-width:320px}
+.foot-brand img{margin-bottom:14px}
+.foot-col h5{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:#FFB98F;margin-bottom:16px}
+.foot-col a{display:block;color:#F0EAE0;font-weight:600;font-size:15px;padding:5px 0;transition:.15s}
+.foot-col a:hover{color:#fff;transform:translateX(3px)}
+.foot-bottom{border-top:2px solid rgba(255,255,255,.2);padding:20px 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:14.5px;color:#C9C2B8;font-weight:600}
+.foot-bottom a{color:#fff;font-weight:800;border-bottom:2px solid var(--orange)}
+
+/* ============ MOBILE ============ */
+@media(max-width:960px){
+  .why-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:680px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:stretch;padding:16px 20px;gap:10px;border-bottom:3px solid var(--ink);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{text-align:center;padding:13px;background:#fff;border:2px solid var(--ink);border-radius:14px}
+  .burger{display:block}
+  .why-grid,.team-grid{grid-template-columns:1fr}
+  .tl-item{padding-left:66px}
+  .hero{padding:60px 0 70px}
+}
+</style>
+<link rel="stylesheet" href="fx.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:none;padding:0">
+    <a href="index.html" class="nav-logo" aria-label="KONO">
+      <img src="logo.png" alt="KONO" style="height:46px;width:auto">
+    </a>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Главная</a>
+      <a href="about.html" class="active">О KONO</a>
+      <a href="menu.html">Меню</a>
+      <a href="index.html#roulette">Рулетка</a>
+      <a href="recipes.html">Рецепты</a>
+      <a href="index.html#memes">Мемы</a>
+      <a href="index.html#social">Соцсети</a>
+      <a href="index.html#address" class="nav-cta">Наши адреса</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="fx-pattern" aria-hidden="true" data-parallax="0.14">
+    <defs>
+      <pattern id="patDanchon2" width="40" height="26" patternUnits="userSpaceOnUse">
+        <path d="M0 8 q10 -8 20 0 t20 0" fill="none" stroke="#EFFFFA" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+        <path d="M0 21 q10 -8 20 0 t20 0" fill="none" stroke="#EFFFFA" stroke-width="3" stroke-linecap="round" opacity=".3"/>
+        <circle cx="30" cy="5" r="1.6" fill="#EFFFFA" opacity=".35"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#patDanchon2)" opacity="0.10"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="tag">О компании</span>
+      <h1>Из Сеула — <em>с любовью</em></h1>
+      <p class="hero-sub">KONO — это корейские рамённые формата «круглосутки»: выбираешь лапшу и топпинги, как в корейском комбини, и сам готовишь её на раменоварке за своим столом. Работаем без официантов и лишнего пафоса, а во многих домиках — круглосуточно. Рассказываем, как всё начиналось и что у нас внутри.</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-orange">🍜 Наше меню</a>
+        <a href="index.html#address" class="btn btn-white">📍 Наши адреса</a>
+      </div>
+      <a href="index.html" class="hero-link">← На главную</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="story">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">История</span>
+      <h2>Как всё <em>начиналось</em></h2>
+      <p>Коротко о том, как идея корейских круглосуток приехала в Россию.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-num">01</div>
+        <div class="tl-card">
+          <h4>Идея</h4>
+          <p>Проект придумал <b>Сергей Лебедев</b> — создатель сети куриных <b>CHICKO</b>. Захотелось перенести вайб корейских «комбини» — круглосуточных магазинов-столовых — на наш рынок. Никакого сложного ресторана: сам выбираешь, сам варишь, как делают в Корее.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">02</div>
+        <div class="tl-card">
+          <h4>Август 2024 — первый домик</h4>
+          <p>Открываем первый домик KONO в Москве, у метро <b>Ладожская</b>. Цель — передать вайб корейской рамённой: без официантов, лишнего пафоса и «столиков по записи». Формат «выбирай и готовь сам» заходит сразу.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">03</div>
+        <div class="tl-card">
+          <h4>Сеть растёт</h4>
+          <p>Один за другим открываются домики по всей стране: <b>Краснодар, Саратов, Калининград</b> и новые точки в Москве.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">04</div>
+        <div class="tl-card big">
+          <h4>Сегодня</h4>
+          <p>KONO — это <b>9 домиков в 5 городах</b> и свой телеграм-канал, где мемы, эдиты и раменчик — каждый день. Но формула та же: вкусный рамен и искренняя атмосфера.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Почему KONO</span>
+      <h2>Формат, который <em>сработал</em></h2>
+      <p>Мы перенесли в Россию формат, который в Корее — уже образ жизни. Вот что у нас за этим стоит.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wico" style="background:#FFE3D1">🏪</div>
+        <h4>Формат «комбини»</h4>
+        <p>KONO — это не ресторан с официантами и бронированием столиков. Всё лежит на полках, как в корейских магазинах-столовых: выбираешь, платишь и сам готовишь за своим столом. Во многих домиках — <b>круглосуточно</b>.</p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#D6F5EE">🍜</div>
+        <h4>Лапша — главный герой</h4>
+        <p>В основе — десятки видов рамена из Азии: Самянг, Шин, кимчи, карбонара, чапагетти. Каждый домик держит <b>около сотни позиций</b> лапши и еды.</p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#FFE9B8">⚙️</div>
+        <h4>Готовишь сам</h4>
+        <p>Выбираешь лапшу и топпинги — и сам варишь её на раменоварке за своим столом. А рядом всегда консультанты: помогут определиться с выбором и <b>приготовить по-настоящему вкусный рамен</b>.</p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#FFD7DE">💛</div>
+        <h4>Миска под твой бюджет</h4>
+        <p>Ты сам решаешь, из чего собрать свой рамен: от скромного перекуса до большой сытной миски. Всё лежит на полке с понятными ценами — платишь ровно за то, что набрал. Корейцы так едят каждый день — и мы тоже.</p>
+      </div>
+    </div>
+    <div class="quote-poster">
+      <h3>«Вкусно, душевно и без суеты» 💛</h3>
+      <p>Мы не просто кормим — делаем место, куда хочется возвращаться: вкусный рамен, тёплая атмосфера и никакого снобизма.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Команда</span>
+      <h2>Кто делает <em>KONO</em></h2>
+      <p>Люди, которые придумали и запустили формат «готовь сам» в России.</p>
+    </div>
+    <div class="team-grid">
+      <div class="tcard">
+        <div class="tico">С</div>
+        <h4>Сергей Лебедев</h4>
+        <small>Основатель</small>
+        <p>Основатель KONO и создатель CHICKO — одного из самых узнаваемых брендов стритфуда в России. Разглядел в корейских комбини формат, которого не хватало нашему рынку, и решился привезти его сюда. Именно его видение сделало KONO таким, каким вы его знаете.</p>
+      </div>
+      <div class="tcard">
+        <div class="tico">К</div>
+        <h4>Курсант Нурадинов</h4>
+        <small>Шеф-повар</small>
+        <p>Отвечает за вкус и концепцию еды: отбор лапши, рецепты топпингов и соусов, чтобы каждая миска была идеальной — и одинаково вкусной во всех городах.</p>
+      </div>
+      <div class="tcard">
+        <div class="tico">А</div>
+        <h4>Антон Барконов</h4>
+        <small>Сооснователь</small>
+        <p>Сооснователь KONO: вместе с командой придумал и собрал формат домиков — от планировки и полок до атмосферы, в которую хочется возвращаться. Убеждён, что рамен должен быть доступным каждому.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="detail">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Детали</span>
+      <h2>Что интересного <em>за кадром</em></h2>
+      <p>Неочевидные вещи про KONO, которые мы любим.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wico" style="background:#D6F5EE">🌍</div>
+        <h4>Дышим Кореей</h4>
+        <p>Формат скопирован с реальных корейских «комбини» — круглосуточных магазинов-столовых. Там так едят практически все: от школьников до офисных работников. <b>Мы первыми привезли это в Россию.</b></p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#FFE3D1">📈</div>
+        <h4>Растём быстро</h4>
+        <p>Первый домик открылся в <b>августе 2024</b>, а уже сегодня KONO — это 9 домиков в 5 городах. Планы — ещё десятки точек по стране, в том числе новые города.</p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#FFE9B8">🧑‍🍳</div>
+        <h4>Фуд-тех на кухне</h4>
+        <p>Без огромных кухонь и смен поваров: раменоварки и наши фирменные <b>бульоноинаторы</b> делают работу за человека. Поэтому цены низкие, а домики могут работать <b>круглосуточно</b>.</p>
+      </div>
+      <div class="why-card">
+        <div class="wico" style="background:#FFD7DE">🎭</div>
+        <h4>Больше, чем рамен</h4>
+        <p>В нашем телеграме — мемы, эдиты, манга и жизнь домиков: всё, что мы любим. В комментариях — настоящее живое общение: гости делятся впечатлениями, советуют топпинги и спорят, какой рамен вкуснее. А захочется рамена — он уже ждёт на полке.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Связаться</span>
+      <h2>Будем <em>на связи</em></h2>
+      <p>Следи за жизнью домиков в соцсетях — там мемы и анонсы почти каждый день.</p>
+    </div>
+    <div class="social-row">
+      <a href="https://t.me/kono_ramen" target="_blank" rel="noopener" class="schip">✈️ Telegram</a>
+      <a href="https://vk.com/kono_ramen" target="_blank" rel="noopener" class="schip">📘 VK</a>
+      <a href="https://instagram.com/kono_ramen" target="_blank" rel="noopener" class="schip">📸 Instagram</a>
+      <a href="https://www.tiktok.com/@kono_ramen" target="_blank" rel="noopener" class="schip">🎵 TikTok</a>
+      <a href="https://youtube.com/@kono_ramen" target="_blank" rel="noopener" class="schip">▶️ YouTube</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div class="wrap">
+      <h3>Готов поспорить, ты уже хочешь рамен 🍜</h3>
+      <a href="index.html#address" class="btn">📍 Найти домик рядом</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="logo.png" alt="KONO" style="height:44px;width:auto">
+        <p>Корейская рамённая нового формата. Выбирай лапшу, топпинги и готовь, как в Корее.</p>
+      </div>
+      <div class="foot-col">
+        <h5>KONO</h5>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О KONO</a>
+        <a href="menu.html">Меню</a>
+        <a href="index.html#roulette">Рулетка</a>
+        <a href="recipes.html">Рецепты</a>
+        <a href="index.html#memes">Мемы</a>
+        <a href="index.html#social">Соцсети</a>
+      </div>
+      <div class="foot-col">
+        <h5>Гостям</h5>
+        <a href="index.html#address">Наши адреса</a>
+        <a href="menu.html">Полное меню</a>
+        <a href="recipes.html">Как сварить рамен</a>
+        <a href="index.html#address">Часы работы</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 KONO · рамённая</span>
+    <span>Сделано с ❤️ и мемами · <a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("burger").addEventListener("click", ()=>{
+  document.getElementById("navLinks").classList.toggle("open");
+});
+</script>
+<script src="fx.js"></script>
+</body>
+</html>

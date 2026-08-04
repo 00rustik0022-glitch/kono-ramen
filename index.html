@@ -51,6 +51,7 @@ img{max-width:100%;display:block}
   transition:.15s;border:2px solid transparent;
 }
 .nav-links a:hover{background:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.nav-links a.nav-cta:hover{background:var(--orange);color:#fff}
 .nav-cta{
   background:var(--orange);color:#fff !important;border-color:var(--ink) !important;
   box-shadow:3px 3px 0 var(--ink);
@@ -100,26 +101,84 @@ img{max-width:100%;display:block}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .btn-orange{background:var(--orange);color:#fff}
+.btn-cream{background:var(--cream);color:var(--ink)}
 .btn-white{background:#fff}
 /* пикер рандома */
-.pick-wrap{margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:60px}
-.pick-btn{background:var(--cream);color:var(--ink)}
-.pick-btn:hover{background:#fff}
+.pick-wrap{margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px;min-height:60px}
+.rw-frame{position:relative;width:min(340px,86vw);height:min(340px,86vw);margin:0 auto}
+.rw{
+  position:absolute;inset:0;border-radius:50%;border:5px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);overflow:hidden;cursor:pointer;
+  transition:transform 3.8s cubic-bezier(.15,.8,.18,1);
+  transform:rotate(0deg);
+  background:conic-gradient(
+    #FFE3D1 0deg 45deg,#D6F5EE 45deg 90deg,#FFE9B8 90deg 135deg,#FFD7DE 135deg 180deg,
+    #E7E9FF 180deg 225deg,#D9F7E1 225deg 270deg,#FFE8C8 270deg 315deg,#FFD9D0 315deg 360deg);
+}
+.rw::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-conic-gradient(from 22.5deg, rgba(35,31,27,.9) 0deg .8deg, transparent .8deg 45deg);
+}
+.rw-seg{
+  position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;
+  display:flex;align-items:center;justify-content:center;font-size:30px;
+  background:#fff;border:3px solid var(--ink);border-radius:50%;
+  box-shadow:3px 3px 0 var(--ink);z-index:2;
+}
+.rw-hub{
+  position:absolute;left:50%;top:50%;width:96px;height:96px;transform:translate(-50%,-50%);
+  background:var(--orange);border:4px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:42px;
+  box-shadow:4px 4px 0 var(--ink);z-index:3;cursor:pointer;transition:.15s;
+}
+.rw-hub:hover{transform:translate(-50%,-50%) scale(1.07);box-shadow:6px 6px 0 var(--ink)}
+.rw-hub:active{transform:translate(-50%,-50%) scale(.96)}
+.rw-hub.spinning{animation:hubSpin 1.2s linear infinite}
+@keyframes hubSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.rw-pointer{
+  position:absolute;left:50%;top:-7px;transform:translateX(-50%);z-index:4;
+  width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;
+  border-top:28px solid var(--red);filter:drop-shadow(2px 3px 0 var(--ink));
+}
+.rw-hint{
+  width:max-content;max-width:96%;text-align:center;font-weight:800;font-size:13.5px;color:var(--text-dim);
+  background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:5px 14px;
+}
+.rw.spinning{pointer-events:none}
 .pick-result{
   display:none;background:#fff;border:3px solid var(--ink);border-radius:16px;
   padding:12px 22px;font-weight:900;font-size:18px;box-shadow:var(--shadow-sm);
   max-width:90%;animation:pop .35s cubic-bezier(.2,1.6,.4,1);
 }
 .pick-result b{color:var(--orange)}
+.pick-result small{
+  display:block;font-weight:700;font-size:14px;color:var(--text-dim);margin-top:7px;line-height:1.55;
+}
+.pick-result small a{color:var(--orange);border-bottom:2px solid var(--orange);font-weight:900}
+.pick-result.big-result{
+  padding:22px 30px;text-align:center;background:var(--paper);
+  border-width:4px;box-shadow:6px 6px 0 var(--ink),0 0 0 5px var(--teal);
+  animation:bigPop .55s cubic-bezier(.2,1.8,.35,1);position:relative;margin-top:6px;
+}
+.pick-result.big-result .res-emoji{font-size:48px;display:block;line-height:1;margin-bottom:8px}
+.pick-result.big-result b{font-size:21px}
+.pick-result.big-result small{font-size:14px;margin-top:9px}
+.pick-result.big-result small a{background:var(--cream);padding:4px 12px;border-radius:999px;border:2px solid var(--ink)}
+@keyframes bigPop{0%{transform:scale(.2) rotate(-6deg);opacity:0}60%{transform:scale(1.12) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+/* магический эффект рулетки */
+@keyframes sparkFly{0%{transform:translate(-50%,-50%) scale(.4);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.15) rotate(25deg);opacity:0}}
+.spark{position:fixed;z-index:9999;pointer-events:none;line-height:1;font-weight:900;animation:sparkFly .75s ease-out forwards}
+@keyframes btnShake{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-3px,2px) rotate(-2deg)}50%{transform:translate(3px,-2px) rotate(2deg)}75%{transform:translate(-2px,-1px) rotate(-1deg)}}
+.pick-btn.shake{animation:btnShake .45s ease-in-out}
 
 /* ============ MARQUEE ============ */
 .marquee{
   background:var(--orange);border-bottom:4px solid var(--ink);overflow:hidden;
   padding:12px 0;transform:rotate(-1.1deg) scale(1.02);margin-top:-6px;position:relative;z-index:4;
 }
-.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:slide 22s linear infinite;font-weight:900;color:#fff;font-size:15px;letter-spacing:.04em;text-transform:uppercase}
-.marquee span{display:inline-flex;align-items:center;gap:14px}
+.marquee-track{display:flex;white-space:nowrap;animation:slide 22s linear infinite;font-weight:900;color:#fff;font-size:15px;letter-spacing:.04em;text-transform:uppercase}
+.marquee span{display:inline-flex;align-items:center;gap:14px;padding-right:48px}
 .marquee i{font-style:normal;opacity:.85}
 @keyframes slide{to{transform:translateX(-50%)}}
 
@@ -161,55 +220,49 @@ img{max-width:100%;display:block}
 }
 .about-poster p{color:#E8FFFA;font-weight:700;font-size:14px;margin-top:16px;line-height:1.5}
 
-/* ============ HOW ============ */
-#how{background:var(--cream)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.step{
+/* ============ FORMAT ============ */
+#format{background:var(--cream)}
+.format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fcard{
   background:var(--paper);border:3px solid var(--ink);border-radius:var(--r);
-  padding:28px 22px;box-shadow:var(--shadow);position:relative;transition:.2s;
+  padding:28px 24px;box-shadow:var(--shadow);transition:.2s;
 }
-.step:hover{transform:translate(-3px,-3px)}
-.step-num{
-  position:absolute;top:-18px;left:18px;background:var(--ink);color:#fff;
-  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:18px;border:3px solid var(--orange);
+.fcard:hover{transform:translate(-3px,-3px)}
+.fcard .fico{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:18px;border:3px solid var(--ink);box-shadow:var(--shadow-sm)}
+.fcard h4{font-size:18px;font-weight:900;margin-bottom:8px}
+.fcard p{font-size:14.5px;color:var(--text-dim);font-weight:600;line-height:1.55}
+.quote-poster{
+  background:var(--teal);border:4px solid var(--ink);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:36px;margin-top:44px;text-align:center;transform:rotate(-.6deg);
 }
-.step-icon{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:18px;border:3px solid var(--ink);box-shadow:var(--shadow-sm)}
-.si-1{background:#FFE3D1}
-.si-2{background:#D6F5EE}
-.si-3{background:#FFE9B8}
-.si-4{background:#F3E0FF}
-.step h4{font-size:18px;font-weight:900;margin-bottom:8px}
-.step p{font-size:14.5px;color:var(--text-dim);font-weight:600;line-height:1.55}
+.quote-poster h3{font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.25;margin-bottom:14px}
+.quote-poster p{color:#D3F5ED;font-weight:600;font-size:15px}
 
-/* ============ MENU ============ */
-#menu{background:var(--paper)}
-.menu-filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.mf{
-  border:3px solid var(--ink);background:#fff;border-radius:999px;padding:10px 22px;
-  font-weight:800;font-size:14.5px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:.15s;color:var(--ink);
+/* ============ ATMOSPHERE ============ */
+#atmos{background:var(--paper)}
+.atmos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.atom{
+  background:var(--cream);border:3px solid var(--ink);border-radius:var(--r);
+  padding:24px 22px;box-shadow:var(--shadow-sm);transition:.2s;
 }
-.mf:hover{transform:translate(-1px,-1px)}
-.mf.active{background:var(--ink);color:#fff;box-shadow:3px 3px 0 var(--orange)}
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:980px;margin:0 auto}
-.menu-item{
-  display:flex;gap:18px;align-items:flex-start;background:var(--cream);border:3px solid var(--ink);
-  border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);transition:.15s;
+.atom:hover{transform:translate(-3px,-3px) rotate(-1deg)}
+.atom .aico{font-size:34px;margin-bottom:14px}
+.atom h4{font-size:17px;font-weight:900;margin-bottom:8px}
+.atom p{font-size:14px;color:var(--text-dim);font-weight:600;line-height:1.55}
+.atom-quote{
+  grid-column:1 / -1;background:var(--ink);color:#fff;border-radius:var(--r);
+  padding:30px 34px;text-align:center;box-shadow:var(--shadow);transform:rotate(.6deg);
 }
-.menu-item:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
-.mi-name{font-weight:900;font-size:16.5px;line-height:1.25}
-.mi-name .dot{color:var(--orange)}
-.mi-desc{font-size:13.5px;color:var(--text-dim);font-weight:600;margin-top:4px;line-height:1.5}
-.mi-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.mi-badge{background:var(--ink);color:#fff;border-radius:8px;padding:3px 9px;font-size:11px;font-weight:800;letter-spacing:.04em}
-.mi-badge.hot{background:var(--red)}
-.mi-badge.veg{background:var(--teal)}
-.mi-price{font-family:'Unbounded';font-weight:800;font-size:16px;color:var(--orange);white-space:nowrap}
-.menu-note{text-align:center;margin-top:36px;color:var(--text-dim);font-weight:700;font-size:15px}
+.atom-quote p{font-size:clamp(17px,2.2vw,21px);font-weight:800;line-height:1.5}
+.atom-quote small{display:block;color:#CFC9C0;font-weight:600;margin-top:12px;font-size:13px}
+
+/* ============ ROULETTE ============ */
+#roulette{background:var(--paper)}
+.menu-note{text-align:center;margin-top:52px;color:var(--text-dim);font-weight:700;font-size:15px}
 .menu-note a{color:var(--orange);border-bottom:3px solid var(--orange);font-weight:900}
 
 /* ============ VIBES ============ */
-#vibes{background:var(--teal);position:relative;overflow:hidden}
+#vibes{background:var(--teal)}
 #vibes .sec-head h2{color:#fff}
 #vibes .sec-head h2 em{color:var(--cream)}
 #vibes .sec-head p{color:#D3F5ED}
@@ -243,9 +296,46 @@ img{max-width:100%;display:block}
 .vchip.orange{background:var(--orange);color:#fff}
 .vchip.teal{background:var(--teal);color:#fff}
 
+/* ============ MEMES ============ */
+#memes{background:var(--paper)}
+.memes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:start}
+.meme-card{
+  background:#fff;border:3px solid var(--ink);border-radius:18px;overflow:hidden;
+  box-shadow:var(--shadow-sm);transform:rotate(var(--tilt,-1.2deg));transition:transform .18s;
+}
+.meme-card:hover{transform:rotate(0) scale(1.03)}
+.meme-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-bottom:3px solid var(--ink)}
+.meme-card figcaption{padding:14px 16px;font-weight:800;font-size:14.5px;line-height:1.4}
+.meme-card figcaption small{display:block;font-weight:600;color:var(--text-dim);font-size:12.5px;margin-top:6px}
+.meme-card:nth-child(2){--tilt:1.4deg;margin-top:16px}
+.meme-card:nth-child(4){--tilt:1.6deg;margin-top:16px}
+.meme-link{text-align:center;margin-top:42px;font-weight:800;font-size:17px}
+.meme-link a{color:var(--orange);border-bottom:3px solid var(--orange);font-weight:900}
+
 /* ============ ADDRESS ============ */
 #address{background:var(--paper)}
-.loc-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.loc-grid{display:grid;grid-template-columns:.85fr 1.5fr;gap:28px;align-items:start}
+.loc-list{display:flex;flex-direction:column;gap:12px}
+.loc-btn{
+  background:var(--cream);border:3px solid var(--ink);border-radius:14px;color:var(--ink);
+  padding:14px 16px;box-shadow:var(--shadow-sm);cursor:pointer;text-align:left;
+  transition:.15s;display:flex;flex-direction:column;gap:3px;font-family:inherit;width:100%;
+}
+.loc-btn:hover{transform:translate(-2px,-2px)}
+.loc-btn.active{background:var(--teal);color:#fff}
+.loc-btn b{font-size:15px;font-weight:900}
+.loc-btn span{font-size:13px;font-weight:600;color:var(--text-dim);line-height:1.4}
+.loc-btn.active span{color:#E7FFF8}
+.loc-btn .loc-tag{
+  display:inline-flex;align-items:center;gap:4px;align-self:flex-start;margin-top:5px;
+  font-size:11.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;
+  background:var(--orange);color:#fff;border:2px solid var(--ink);border-radius:8px;padding:2px 8px;
+}
+.loc-detail{display:flex;flex-direction:column;gap:16px}
+.loc-detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.loc-detail-head h3{font-family:'Unbounded';font-weight:900;font-size:clamp(18px,2.4vw,26px)}
+.loc-detail-head .loc-sub{font-size:14px;font-weight:800;color:var(--orange);margin-top:4px}
+.loc-detail-head .loc-open{margin-top:0}
 .loc-cards{display:flex;flex-direction:column;gap:16px}
 .loc-card{
   background:var(--cream);border:3px solid var(--ink);border-radius:16px;
@@ -273,6 +363,7 @@ img{max-width:100%;display:block}
 
 /* ============ CITIES ============ */
 #cities{background:var(--cream)}
+#cities .sec-head p{color:#4A443D}
 .cities{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .city{
   background:var(--paper);border:3px solid var(--ink);border-radius:16px;padding:22px 18px;
@@ -290,10 +381,10 @@ img{max-width:100%;display:block}
 /* ============ SOCIAL ============ */
 #social{background:var(--paper);position:relative;overflow:hidden}
 #social::before{
-  content:"100/10";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  content:"KONO";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   font-family:'Unbounded';font-weight:900;font-size:240px;color:rgba(255,85,0,.06);white-space:nowrap;pointer-events:none;
 }
-.social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto;position:relative;z-index:2}
+.social-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;max-width:1100px;margin:0 auto;position:relative;z-index:2}
 .social-card{
   background:var(--cream);border:3px solid var(--ink);border-radius:var(--r);
   padding:28px 20px;text-align:center;box-shadow:var(--shadow);transition:.18s;display:flex;flex-direction:column;gap:12px;align-items:center;
@@ -311,6 +402,7 @@ footer{background:var(--ink);color:#fff;position:relative}
   background:var(--orange);border-top:4px solid var(--ink);color:#fff;
   padding:60px 0;text-align:center;
 }
+.foot-top>*{position:relative;z-index:1}
 .foot-top h3{font-size:clamp(22px,3.4vw,34px);font-weight:900;margin-bottom:24px}
 .foot-top .btn{background:#fff;color:var(--ink)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding:52px 0 40px}
@@ -325,13 +417,22 @@ footer{background:var(--ink);color:#fff;position:relative}
 /* ============ MOBILE ============ */
 @media(max-width:960px){
   .about-grid,.loc-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr 1fr}
+  .format-grid,.atmos-grid{grid-template-columns:1fr 1fr}
   .vibes-grid{grid-template-columns:1fr}
   .cities{grid-template-columns:repeat(2,1fr)}
   .menu-grid{grid-template-columns:1fr}
   .social-grid{grid-template-columns:1fr 1fr}
+  .memes-grid{grid-template-columns:1fr 1fr}
+  .meme-card:nth-child(2),.meme-card:nth-child(4){margin-top:0}
   .foot-grid{grid-template-columns:1fr;gap:28px}
-  .hero-sticker{display:none}
+  .hero-inner{max-width:640px;padding:0}
+  .hero-poster{margin-bottom:26px}
+  .hero h1{margin-bottom:20px}
+  .hero-sub{margin:0 auto 26px}
+  .hero-actions{justify-content:center}
+  .hero .btn{padding:16px 30px;font-size:16px}
+  .marquee{margin-top:-6px}
+  .marquee-track{font-size:15px}
 }
 @media(max-width:680px){
   .nav-links{
@@ -341,12 +442,15 @@ footer{background:var(--ink);color:#fff;position:relative}
   .nav-links.open{display:flex}
   .nav-links a{text-align:center;padding:13px;background:#fff;border:2px solid var(--ink);border-radius:14px}
   .burger{display:block}
-  .steps{grid-template-columns:1fr}
+  .format-grid,.atmos-grid{grid-template-columns:1fr}
   .cities{grid-template-columns:1fr 1fr}
   .social-grid{grid-template-columns:1fr}
+  .memes-grid{grid-template-columns:1fr}
   .hero{padding:60px 0 70px}
+  .rw-frame{width:min(300px,82vw);height:min(300px,82vw)}
 }
 </style>
+<link rel="stylesheet" href="fx.css">
 </head>
 <body>
 
@@ -358,9 +462,12 @@ footer{background:var(--ink);color:#fff;position:relative}
     </a>
     <button class="burger" id="burger" aria-label="Меню">☰</button>
     <div class="nav-links" id="navLinks">
-      <a href="#about">О Коно</a>
-      <a href="#how">Как это работает</a>
-      <a href="#menu">Меню</a>
+<a href="about.html">О KONO</a>
+<a href="#format">Формат</a>
+      <a href="menu.html">Меню</a>
+      <a href="#roulette">Рулетка</a>
+      <a href="recipes.html">Рецепты</a>
+      <a href="#memes">Мемы</a>
       <a href="#social">Соцсети</a>
       <a href="#address" class="nav-cta">Наши адреса</a>
     </div>
@@ -368,136 +475,234 @@ footer{background:var(--ink);color:#fff;position:relative}
 </nav>
 
 <header class="hero" id="top">
+  <svg class="fx-pattern" aria-hidden="true" data-parallax="0.14">
+    <defs>
+      <pattern id="patDanchon" width="40" height="26" patternUnits="userSpaceOnUse">
+        <path d="M0 8 q10 -8 20 0 t20 0" fill="none" stroke="#EFFFFA" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+        <path d="M0 21 q10 -8 20 0 t20 0" fill="none" stroke="#EFFFFA" stroke-width="3" stroke-linecap="round" opacity=".3"/>
+        <circle cx="30" cy="5" r="1.6" fill="#EFFFFA" opacity=".35"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#patDanchon)" opacity="0.10"/>
+  </svg>
   <div class="hero-inner">
     <div class="hero-poster">
-      <div class="mp-big">ЛЮБЛЮ KONO <span class="star">⭐</span> <b>100/10</b> <span class="star">⭐</span></div>
-      <div class="mp-small">Очень вкусный рамен 🍜</div>
+      <div class="mp-big" data-tilt data-tilt-rotate="-2">ЛЮБЛЮ KONO <span class="star">⭐</span> <b>100/10</b> <span class="star">⭐</span></div>
+      <div class="mp-small" data-tilt data-tilt-rotate="2">Рамён, от которого мурашки 🍜</div>
     </div>
     <h1>Рамен по <em>твоим правилам</em></h1>
-    <p class="hero-sub">Выбираешь лапшу, платишь, готовишь сам на индукционной плитке — как в Сеуле. 11 домиков в 5 городах.</p>
+    <p class="hero-sub">Выбираешь лапшу, платишь, готовишь сам на индукционной плитке — как в Сеуле. 9 домиков в 5 городах.</p>
     <div class="hero-actions">
-      <a href="#menu" class="btn btn-orange">🍜 Смотреть меню</a>
+      <a href="menu.html" class="btn btn-orange">🍜 Смотреть меню</a>
     </div>
     <a href="#address" class="hero-link">📍 Наши адреса →</a>
   </div>
 </header>
 
 <div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Выбирай лапшу 🍜 <i>·</i> Готовь сам 🥢 <i>·</i> Как в Корее 🇰🇷 <i>·</i> Очень вкусный рамен ⭐ <i>·</i> ЛЮБЛЮ KONO 100/10 ❤️ <i>·</i> Бульдак и соусы бесплатно 🌶 <i>·</i> Рамен по твоим правилам ✨ <i>·</i></span>
-    <span>Выбирай лапшу 🍜 <i>·</i> Готовь сам 🥢 <i>·</i> Как в Корее 🇰🇷 <i>·</i> Очень вкусный рамен ⭐ <i>·</i> ЛЮБЛЮ KONO 100/10 ❤️ <i>·</i> Бульдак и соусы бесплатно 🌶 <i>·</i> Рамен по твоим правилам ✨ <i>·</i></span>
-  </div>
-</div>
+      <div class="marquee-track">
+        <span>Выбирай лапшу 🍜 <i>·</i> Готовь сам 🥢 <i>·</i> Как в Корее 🇰🇷 <i>·</i> Бульдак для смелых 🌶 <i>·</i> Кимпаб и онигири 🍙 <i>·</i> Самянг, Шин и Джин — на любой вкус 🌶 <i>·</i> Рамен по твоим правилам ✨ <i>·</i></span>
+        <span>Выбирай лапшу 🍜 <i>·</i> Готовь сам 🥢 <i>·</i> Как в Корее 🇰🇷 <i>·</i> Бульдак для смелых 🌶 <i>·</i> Кимпаб и онигири 🍙 <i>·</i> Самянг, Шин и Джин — на любой вкус 🌶 <i>·</i> Рамен по твоим правилам ✨ <i>·</i></span>
+      </div>
+    </div>
 
-<section class="sec" id="about">
+<section class="sec" id="about" style="position:relative;overflow:hidden">
+  <svg class="fx-naruto" viewBox="0 0 200 200" aria-hidden="true"
+       style="position:absolute;right:-40px;top:30px;opacity:.13;transform:rotate(14deg)" data-parallax="0.25">
+    <g fill="none" stroke="#FF5500" stroke-width="11" stroke-linecap="round">
+      <circle cx="100" cy="100" r="20"/>
+      <circle cx="100" cy="100" r="44" stroke-dasharray="58 40"/>
+      <circle cx="100" cy="100" r="68" stroke-dasharray="48 54" stroke-dashoffset="24"/>
+      <circle cx="100" cy="100" r="90" stroke-dasharray="36 66" stroke-dashoffset="-34"/>
+    </g>
+    <path d="M100 10c26 0 42 13 42 34 0 16-11 26-26 22" fill="none" stroke="#FF5500" stroke-width="11" stroke-linecap="round"/>
+  </svg>
   <div class="wrap">
     <div class="about-grid">
       <div class="about-copy">
         <div class="sec-head" style="margin-bottom:22px;text-align:left">
-          <span class="tag">О Коно</span>
+          <span class="tag">О KONO</span>
           <h2>Рамен, который ты <em>собираешь сам</em></h2>
         </div>
         <p>Первый в России сетевой формат «лапша + самообслуживание»: заходишь, выбираешь лапшу и топпинги, платишь — и за 5 минут готовишь свой идеальный рамен на индукционной плитке.</p>
-        <p>Всё как в уличных корейских закусочных: полки с мангой, аниме на экранах, банановое и дынное молоко, бесплатные соусы бульдак. Ты приходишь как гость, а уходишь как постоянный.</p>
+        <p>Всё как в уличных корейских закусочных: полки с мангой, аниме на экранах, банановое и дынное молоко, соусы бульдак для любителей острого. Ты приходишь как гость, а уходишь как постоянный.</p>
         <div class="about-feats">
           <div class="feat"><b>5 мин</b>от выбора до готовки</div>
-          <div class="feat"><b>11</b>домиков в 5 городах</div>
-          <div class="feat"><b>4.8★</b>и тысячи отзывов</div>
+          <div class="feat"><b>9</b>домиков в 5 городах</div>
+          <div class="feat"><b>5.0★</b>на Яндекс Картах</div>
           <div class="feat"><b>24/7</b>в пятницу и субботу</div>
         </div>
+        <p style="margin-top:22px"><a href="about.html" class="btn btn-orange" style="padding:13px 24px;font-size:15px">История и компания →</a></p>
       </div>
-      <div class="about-poster">
-        <div class="poster-bubble">ЛЮБЛЮ KONO <span>⭐ 100/10 ⭐</span></div>
-        <div class="poster-bubble2">Очень вкусный рамен 🍜</div>
-        <p>— так пишут в наших отзывах. А ещё говорят «как в аниме» и «кусочек Кореи посреди города».</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Как это работает</span>
-      <h2>4 шага до <em>твоего</em> рамена</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-icon si-1">🛒</div>
-        <h4>Выбирай лапшу</h4>
-        <p>Полка с десятками видов: от классики до самых диких вкусов. Бери, что зацепит.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-icon si-2">💳</div>
-        <h4>Плати</h4>
-        <p>Касса на выходе. Никаких сложных заказов и долгих ожиданий.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-icon si-3">🍳</div>
-        <h4>Готовь сам</h4>
-        <p>Индукционная плитка, инструкция на стене, кипяток рядом. Как в Корее.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-icon si-4">😌</div>
-        <h4>Кайфуй</h4>
-        <p>Манга на полках, аниме на экранах, мемы. И соусы бульдак — бесплатно.</p>
+      <div class="about-poster" data-tilt data-tilt-rotate="1.6">
+        <div class="poster-bubble">⭐ Рейтинг <span>5.0</span> ⭐</div>
+        <div class="poster-bubble2">на Яндекс Картах · 950+ оценок</div>
+        <p>А ещё говорят «как в аниме» и «кусочек Кореи посреди города».</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="menu">
+<section class="sec" id="format">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">Меню</span>
-      <h2>Рамены, топпинги и <em>снеки</em></h2>
-      <p>Полное меню с ценами — в нашем приложении. Тут — самое любимое.</p>
+      <span class="tag">Формат</span>
+      <h2>Как это устроено <em>изнутри</em></h2>
+      <p>Три шага, которые делают каждый домик KONO.</p>
     </div>
-    <div class="menu-filters" id="filters">
-      <button class="mf active" data-f="all">Всё</button>
-      <button class="mf" data-f="ramen">Рамены</button>
-      <button class="mf" data-f="top">Топпинги</button>
-      <button class="mf" data-f="snow">Снеки</button>
-      <button class="mf" data-f="drink">Напитки</button>
+    <div class="format-grid">
+      <div class="fcard">
+        <div class="fico" style="background:#FFE3D1">🛒</div>
+        <h4>Выбираешь сам</h4>
+        <p>С полки берёшь рамен — Самянг, Шин, карбонара, кимчи — и топпинги: курица, креветки, говядина, маринованное яйцо, микс сыра.</p>
+      </div>
+      <div class="fcard">
+        <div class="fico" style="background:#D6F5EE">💳</div>
+        <h4>Платишь</h4>
+        <p>Никаких официантов и ожидания. Как в корейском магазине у дома: рассчитался — и вперёд, к своей миске.</p>
+      </div>
+      <div class="fcard">
+        <div class="fico" style="background:#FFE9B8">🍳</div>
+        <h4>Готовишь сам</h4>
+        <p>На индукционной плитке за своим столом варишь рамен по себе. Соусы, приправы и нори — бесплатно под рукой.</p>
+      </div>
     </div>
-    <div class="menu-grid" id="menuGrid"></div>
+    <div class="quote-poster" data-tilt data-tilt-rotate="-0.6">
+      <h3>«Любовь — главный ингредиент» 💛</h3>
+      <p>Мы корейские домики из Сеула с душой — и это не просто слова, а наш рецепт работы.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="atmos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Атмосфера</span>
+      <h2>Что внутри <em>домика</em></h2>
+      <p>Гости говорят, что у нас «как в аниме». И они недалеки от истины.</p>
+    </div>
+    <div class="atmos-grid">
+      <div class="atom">
+        <div class="aico">📚</div>
+        <h4>Манга на полках</h4>
+        <p>Пока варится рамен, можно полистать комиксы. Многие так и остаются дочитывать.</p>
+      </div>
+      <div class="atom">
+        <div class="aico">🎧</div>
+        <h4>К-поп и дорамы</h4>
+        <p>Музыка, вертикальные видео и кадры из любимых дорам — К-поп задействован максимально.</p>
+      </div>
+      <div class="atom">
+        <div class="aico">🌶</div>
+        <h4>Бесплатные соусы</h4>
+        <p>Бульдак и другие соусы — на стойке. Остроту выбираешь сам, до последней капли.</p>
+      </div>
+      <div class="atom">
+        <div class="aico">🍌</div>
+        <h4>Банановое и дынное молоко</h4>
+        <p>Классика корейских магазинов — сладкое молоко, которое так любят герои дорам.</p>
+      </div>
+      <div class="atom">
+        <div class="aico">🔌</div>
+        <h4>Зарядки и столы</h4>
+        <p>Сел, зарядил телефон, сварил рамен и работаешь хоть до утра. Мы же круглосутки.</p>
+      </div>
+      <div class="atom">
+        <div class="aico">😄</div>
+        <h4>Мемный вайб</h4>
+        <p>Наш канал — это мемы, эдиты и раменчик почти каждый день. Мы такие же, как наши гости.</p>
+      </div>
+      <div class="atom-quote">
+        <p>«Это как оказаться в аниме. К-поп, манга, мемы — максимум вайба.»</p>
+        <small>отзыв гостя из 2ГИС</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec fx-dots" id="roulette">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Рулетка</span>
+      <h2>Не знаешь, что выбрать? <em>Судьба решит</em></h2>
+      <p>Крути рамен-рулетку — получишь случайный рамен из наших полок с рецептом. А полное меню с фото и ценами — на отдельной странице.</p>
+    </div>
     <div class="pick-wrap">
-      <button class="btn pick-btn" id="pickBtn">🎲 Не могу выбрать — что заказать?</button>
+      <div class="rw-frame" id="rwFrame">
+        <div class="rw-pointer"></div>
+        <div class="rw" id="rwWheel">
+          <div class="rw-seg" data-i="0">🍜</div>
+          <div class="rw-seg" data-i="1">🔥</div>
+          <div class="rw-seg" data-i="2">🧀</div>
+          <div class="rw-seg" data-i="3">🦐</div>
+          <div class="rw-seg" data-i="4">🥚</div>
+          <div class="rw-seg" data-i="5">🌶</div>
+          <div class="rw-seg" data-i="6">🍄</div>
+          <div class="rw-seg" data-i="7">🥩</div>
+          <div class="rw-hub" id="rwHub">🎲</div>
+        </div>
+      </div>
+      <div class="rw-hint" id="rwHint">жми на колесо — судьба выберет</div>
       <div class="pick-result" id="pickResult"></div>
     </div>
-    <p class="menu-note">Полное меню и актуальные цены → <a href="https://konoramen.myresto.online/ru" target="_blank" rel="noopener">konoramen.myresto.online</a></p>
+    <p class="menu-note">Хочешь всё меню с фото и ценами? — <a href="menu.html">открыть страницу меню</a></p>
   </div>
 </section>
 
 <section class="sec" id="vibes">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">Атмосфера</span>
+      <span class="tag">Отзывы</span>
       <h2>Что говорят <em>гости</em></h2>
-      <p>Собрали самое честное из отзывов.</p>
+      <p>Собрали самое честное из отзывов на картах и в приложениях.</p>
     </div>
     <div class="vibes-grid">
       <div class="vibes-chat">
-        <div class="vbubble">«Это как <b>оказаться в аниме</b>. Кпоп, манга, мемы — максимум вайба.»<small>отзыв из 2ГИС</small></div>
-        <div class="vbubble vb-r">«<b>Кусочек Кореи</b> в центре города. Рамен — огонь, а бульдак бесплатно. ❤️»<small>отзыв из 2ГИС</small></div>
-        <div class="vbubble">«Меняет весь мой вечер: пришёл за раменом — остался читать мангу.»<small>отзыв из 2ГИС</small></div>
+        <div class="vbubble">«<b>Кусочек Кореи</b> в центре города. Рамен — огонь, атмосфера — своя. ❤️»<small>отзыв с Яндекс Карт</small></div>
+        <div class="vbubble vb-r">«Меняет весь мой вечер: пришёл за раменом — остался читать мангу.»<small>отзыв из 2ГИС</small></div>
+        <div class="vbubble">«Новая для нас концепция — всё делаешь сам, но это просто. Получилось <b>правда вкусно</b>! Интерьер уютный, отправляет в Азию.»<small>отзыв с Яндекс Карт</small></div>
       </div>
-      <div class="vibes-panel">
-        <div class="vibes-count">100/10<span>ЛЮБЛЮ KONO</span></div>
+      <div class="vibes-panel" data-tilt data-tilt-rotate="1.2">
+        <div class="vibes-count">5.0<span>на Яндекс Картах ★</span></div>
         <div class="vibes-row">
           <span class="vchip orange">🍜 раменчик</span>
-          <span class="vchip">🥢 коппаб</span>
+          <span class="vchip">🥢 кимпаб</span>
           <span class="vchip teal">🌶 бульдак</span>
           <span class="vchip">🍌 банановое молоко</span>
           <span class="vchip orange">📖 манга</span>
-          <span class="vchip">🖥 вертикальные видео ожили</span>
+          <span class="vchip">🎵 TikTok в деле</span>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="memes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Мемы</span>
+      <h2>Наш <em>телеграм</em> в деле</h2>
+      <p>Корейцы едят рамен. Мы это проверили.</p>
+    </div>
+    <div class="memes-grid">
+      <figure class="meme-card">
+        <img src="meme-kpop-ramen.jpg" alt="K-pop айдол ест острый рамен" loading="lazy">
+        <figcaption>Топ-айдол и острый Самянг<small>так выглядит, когда «ну ещё чуть-чуть»</small></figcaption>
+      </figure>
+      <figure class="meme-card">
+        <img src="meme-drama-ramen.jpg" alt="Героиня дорамы ест рамен из стаканчика" loading="lazy">
+        <figcaption>«Пойдёшь ко мне — посмотрим дораму?»<small>спойлер: речь была про рамен</small></figcaption>
+      </figure>
+      <figure class="meme-card">
+        <img src="meme-fighter.jpg" alt="Мем Выбери своего бойца KONO Edition" loading="lazy">
+        <figcaption>Выбери своего бойца: KONO Edition<small>все вкусы — сильные</small></figcaption>
+      </figure>
+      <figure class="meme-card">
+        <img src="meme-kono-name.jpg" alt="Генератор KONO-имени по заряду телефона" loading="lazy">
+        <figcaption>Узнай своё KONO-имя<small>проверь заряд — вдруг ты сырный Чонгук</small></figcaption>
+      </figure>
+    </div>
+    <p class="meme-link">Больше мемов и эдитов — в нашем <a href="https://t.me/kono_ramen" target="_blank" rel="noopener">Telegram</a></p>
   </div>
 </section>
 
@@ -505,62 +710,80 @@ footer{background:var(--ink);color:#fff;position:relative}
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">Наши адреса</span>
-      <h2>Флагман — <em>Санкт-Петербург</em></h2>
-      <p>Ул. Восстания, 11. Рейтинг 5.0 в 2ГИС, тысячи отзывов.</p>
+      <h2>Выбери свой <em>домик</em></h2>
+      <p>От Ладожской до Калининграда — адрес, часы, телефон и карта для каждого.</p>
     </div>
     <div class="loc-grid">
-      <div class="loc-cards">
-        <div class="loc-card">
-          <div class="loc-ico">📍</div>
+      <div class="loc-list" id="locList"></div>
+      <div class="loc-detail">
+        <div class="loc-detail-head">
           <div>
-            <h4>Адрес</h4>
-            <p>Санкт-Петербург, ул. Восстания, 11</p>
+            <h3 id="dName">Москва · Ладожская</h3>
+            <p class="loc-sub" id="dSub">★ первый домик</p>
+          </div>
+          <span class="loc-open" id="openBadge">Проверяем…</span>
+        </div>
+        <div class="loc-cards">
+          <div class="loc-card">
+            <div class="loc-ico">📍</div>
+            <div>
+              <h4>Адрес</h4>
+              <p id="dAddr">ул. Восстания, 11</p>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="loc-ico">🕐</div>
+            <div>
+              <h4>Часы работы</h4>
+              <p id="dHours">Пн–Чт: 10:00–23:30<br>Пт–Сб: круглосуточно<br>Вс: 10:00–23:30</p>
+            </div>
+          </div>
+          <div class="loc-card loc-rating" id="dRatingCard">
+            <div class="loc-ico">⭐</div>
+            <div>
+              <h4 id="dRatingLabel">Рейтинг Яндекс Карт</h4>
+              <p><span class="loc-stars">★★★★★</span> <span id="dRating">5.0</span></p>
+              <p class="rating-info" id="dRatingInfo">4851 оценка · 4058 отзывов</p>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="loc-ico">📞</div>
+            <div>
+              <h4>Телефон / почта</h4>
+              <p id="dPhone"><a href="tel:+79112360083">+7 911 236-00-83</a><small>vosst.spb@kono.kr</small></p>
+            </div>
           </div>
         </div>
-        <div class="loc-card">
-          <div class="loc-ico">🕐</div>
-          <div>
-            <h4>Часы работы</h4>
-            <p>Пн–Чт: 10:00–23:30<br>Пт–Сб: круглосуточно<br>Вс: 10:00–23:30</p>
-            <span class="loc-open" id="openBadge">Проверяем…</span>
-          </div>
+        <div class="loc-map">
+          <iframe id="dMap" title="KONO на карте"></iframe>
         </div>
-        <div class="loc-card loc-rating">
-          <div class="loc-ico">⭐</div>
-          <div>
-            <h4>Рейтинг 2ГИС</h4>
-            <p><span class="loc-stars">★★★★★</span> 5.0</p>
-            <p class="rating-info">347 оценок · 283 отзыва<small>«как в аниме», «кусочек Кореи», «мемы на экранах»</small></p>
-          </div>
-        </div>
-        <div class="loc-card">
-          <div class="loc-ico">📞</div>
-          <div>
-            <h4>Телефон / почта</h4>
-            <p><a href="tel:+79112360083">+7 911 236-00-83</a><small>vosst.spb@kono.kr</small></p>
-          </div>
-        </div>
-      </div>
-      <div class="loc-map">
-        <iframe src="https://yandex.ru/map-widget/v1/?text=Раменная%20KONO%20Санкт-Петербург%20Восстания%2011&z=16" title="KONO на карте" loading="lazy"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="cities">
+<section class="sec" id="cities" style="position:relative;overflow:hidden">
+  <svg class="fx-pattern" aria-hidden="true" data-parallax="0.18" style="opacity:.13">
+    <defs>
+      <pattern id="patTaegeuk" width="100" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.26)">
+        <path d="M50 0A50 50 0 0 1 100 50A25 25 0 0 1 50 50A25 25 0 0 0 0 50A50 50 0 0 1 50 0Z" fill="#FF5500"/>
+        <path d="M50 100A50 50 0 0 1 0 50A25 25 0 0 0 50 50A25 25 0 0 1 100 50A50 50 0 0 1 50 100Z" fill="#009B85"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#patTaegeuk)"/>
+  </svg>
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">Города</span>
-      <h2>11 домиков в <em>5 городах</em></h2>
+      <h2>9 домиков в <em>5 городах</em></h2>
       <p>Мы растем как на дрожжах. Следи за анонсами новых домиков в наших соцсетях.</p>
     </div>
     <div class="cities">
       <div class="city"><div class="city-n">5</div><h4>Москва</h4><p>пять домиков</p></div>
       <div class="city"><div class="city-n">1</div><h4>Санкт-Петербург</h4><p>Восстания, 11</p></div>
-      <div class="city"><div class="city-n">2</div><h4>Краснодар</h4><p>два домика</p></div>
-      <div class="city"><div class="city-n">2</div><h4>Саратов</h4><p>два домика</p></div>
-      <div class="city"><div class="city-n">1</div><h4>Калининград</h4><p>один домик</p></div>
+      <div class="city"><div class="city-n">1</div><h4>Краснодар</h4><p>Красная, 102</p></div>
+      <div class="city"><div class="city-n">1</div><h4>Саратов</h4><p>Столыпина, 22</p></div>
+      <div class="city"><div class="city-n">1</div><h4>Калининград</h4><p>Ленинский, 35</p></div>
     </div>
   </div>
 </section>
@@ -593,12 +816,20 @@ footer{background:var(--ink);color:#fff;position:relative}
         <h4>YouTube</h4><p>Короткие вертикальные ролики.</p>
         <span class="go">@kono_ramen →</span>
       </a>
+      <a href="https://www.tiktok.com/@kono_ramen" target="_blank" rel="noopener" class="social-card">
+        <div class="social-ico" style="background:#fff">🎵</div>
+        <h4>TikTok</h4><p>Мемы, челленджи и готовка под бит.</p>
+        <span class="go">@kono_ramen →</span>
+      </a>
     </div>
-    <p class="social-note">Есть идея или замечание? Напиши напрямую директору: <a href="https://t.me/kono_feedback_bot" target="_blank" rel="noopener" style="color:var(--orange);font-weight:900;border-bottom:3px solid var(--orange)">@kono_feedback_bot</a></p>
+    <p class="social-note">Есть идея или замечание? Напиши нам в комментариях к постам или загляни в любой домик — всегда рады.</p>
   </div>
 </section>
 
 <footer>
+  <svg class="fx-wave" viewBox="0 0 1200 34" preserveAspectRatio="none" aria-hidden="true" style="fill:#231F1B">
+    <path d="M0 34c120-28 240-28 360-10 120 18 240 18 360 2 120-16 240-16 360 2 120 18 240 18 360 6v34H0Z"/>
+  </svg>
   <div class="foot-top">
     <div class="wrap">
       <h3>Готов поспорить, ты уже хочешь рамен 🍜</h3>
@@ -612,18 +843,21 @@ footer{background:var(--ink);color:#fff;position:relative}
         <p>Корейская рамённая нового формата. Выбирай лапшу, топпинги и готовь, как в Корее.</p>
       </div>
       <div class="foot-col">
-        <h5>Коно</h5>
-        <a href="#about">О Коно</a>
-        <a href="#menu">Меню</a>
-        <a href="#how">Как это работает</a>
+        <h5>KONO</h5>
+        <a href="about.html">О KONO</a>
+        <a href="menu.html">Меню</a>
+        <a href="#roulette">Рулетка</a>
+        <a href="recipes.html">Рецепты</a>
+        <a href="#memes">Мемы</a>
+        <a href="#format">Как это устроено</a>
         <a href="#social">Соцсети</a>
       </div>
       <div class="foot-col">
         <h5>Гостям</h5>
         <a href="#address">Наши адреса</a>
-        <a href="https://konoramen.myresto.online/ru" target="_blank" rel="noopener">Полное меню</a>
-        <a href="https://t.me/kono_feedback_bot" target="_blank" rel="noopener">Написать директору</a>
-        <a href="https://t.me/kono_feedback_bot" target="_blank" rel="noopener">Оставить отзыв</a>
+        <a href="menu.html">Полное меню</a>
+        <a href="about.html">О KONO</a>
+        <a href="#social">Соцсети</a>
       </div>
     </div>
   </div>
@@ -633,67 +867,187 @@ footer{background:var(--ink);color:#fff;position:relative}
   </div>
 </footer>
 
+<script src="recipes-data.js"></script>
 <script>
-const MENU = [
-  {n:"Син Рамен", d:"Легендарная острая лапша", p:"от 150 ₽", c:"ramen", b:[["hot","остро"]], e:"🌶"},
-  {n:"Шин Рамен Гурмэ", d:"Усиленный бульон, больше вкуса", p:"от 170 ₽", c:"ramen", b:[["hot","остро"]]},
-  {n:"Бульдак Боккеумён", d:"Рамен с соусом бульдак 2x", p:"от 190 ₽", c:"ramen", b:[["hot","огненно"]]},
-  {n:"Сэмян / Суп-рамен", d:"Мягкий вариант для вечера", p:"от 160 ₽", c:"ramen", b:[["veg","нежный"]]},
-  {n:"Яйцо маринованное", d:"Идеальный топпинг", p:"от 40 ₽", c:"top", b:[]},
-  {n:"Сыр", d:"Растаявший, тянущийся", p:"от 45 ₽", c:"top", b:[]},
-  {n:"Чеддер", d:"Для любителей сырного вкуса", p:"от 55 ₽", c:"top", b:[]},
-  {n:"Сосиска / Фишкейк", d:"Для сытного рамена", p:"от 60 ₽", c:"top", b:[]},
-  {n:"Токпокки", d:"Рисовые палочки в остром соусе", p:"от 180 ₽", c:"snow", b:[["hot","остро"]]},
-  {n:"Кимбап / Гимбап", d:"Корейские роллы с начинкой", p:"от 150 ₽", c:"snow", b:[]},
-  {n:"Банановое молоко", d:"Классика корейских магазинов", p:"от 90 ₽", c:"drink", b:[]},
-  {n:"Дынное молоко", d:"Сладкий вкус детства", p:"от 90 ₽", c:"drink", b:[]}
-];
-const grid = document.getElementById("menuGrid");
-function renderMenu(f){
-  grid.innerHTML = MENU.filter(m=>f==="all"||m.c===f).map(m=>`
-    <div class="menu-item">
-      <div style="flex:1">
-        <div class="mi-name">${m.e?m.e+" ":""}${m.n}</div>
-        <div class="mi-desc">${m.d}</div>
-        ${m.b.length?`<div class="mi-badges">${m.b.map(x=>`<span class="mi-badge ${x[0]==='hot'?'hot':'veg'}">${x[1]}</span>`).join("")}</div>`:""}
-      </div>
-      <div class="mi-price">${m.p}</div>
-    </div>`).join("");
+// Рандом-рулетка: лапша + топпинги из таблицы рецептов
+const rwWheel = document.getElementById("rwWheel");
+const rwHub = document.getElementById("rwHub");
+const rwHint = document.getElementById("rwHint");
+const pickResult = document.getElementById("pickResult");
+const RECIPES = window.RECIPES || [];
+const RW_EMOJIS = ["🍜","🔥","🧀","🦐","🥚","🌶","🍄","🥩"];
+let rwAngle = 0, rwBusy = false;
+
+// Расставить эмодзи-кружки по кругу колеса
+function positionSegs(){
+  const size = rwWheel.getBoundingClientRect().width;
+  const r = size*0.40;
+  const segs = rwWheel.querySelectorAll(".rw-seg");
+  segs.forEach((seg,i)=>{
+    const a = (i*45 - 22.5) * Math.PI/180;
+    seg.style.transform = `rotate(${i*45}deg) translateY(${-r}px) rotate(${-i*45}deg)`;
+  });
 }
-renderMenu("all");
-document.getElementById("filters").addEventListener("click", e=>{
-  const b = e.target.closest(".mf"); if(!b) return;
-  document.querySelectorAll(".mf").forEach(x=>x.classList.remove("active"));
-  b.classList.add("active"); renderMenu(b.dataset.f);
-});
 
-// Рандом-пикер
-const pickBtn = document.getElementById("pickBtn"), pickResult = document.getElementById("pickResult");
-pickBtn.addEventListener("click", ()=>{
-  const m = MENU[Math.floor(Math.random()*MENU.length)];
+// Магический эффект на каждом клике рулетки
+function sparkleBurst(el, count){
+  const emojis = ["✨","⭐","🌶","🍜","💫","🌟"];
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+  for(let i=0;i<(count||18);i++){
+    const s = document.createElement("span");
+    s.className = "spark";
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.left = cx + "px";
+    s.style.top = cy + "px";
+    const ang = Math.random()*Math.PI*2;
+    const dist = 70 + Math.random()*120;
+    s.style.setProperty("--dx", Math.cos(ang)*dist + "px");
+    s.style.setProperty("--dy", (Math.sin(ang)*dist - 30) + "px");
+    s.style.fontSize = (14 + Math.random()*18) + "px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 800);
+  }
+  el.classList.remove("shake");
+  void el.offsetWidth;
+  el.classList.add("shake");
+}
+
+// Волшебное выпадение результата
+function revealResult(r){
+  const name = (r.b ? r.b + " — " : "") + r.n;
   pickResult.style.display = "block";
-  pickResult.innerHTML = `${m.e?m.e+" ":""}<b>${m.n}</b> — ${m.d} · ${m.p}`;
-});
+  pickResult.className = "pick-result big-result";
+  pickResult.innerHTML = `<span class="res-emoji">${r.e} 🎉</span><b>${name}</b>
+    <small>Топпинги: ${(r.t||[]).join(", ") || "без"} · ${r.s}, режим ${r.m} · ${r.h.toLowerCase()}<br>
+    Полный рецепт — на <a href="recipes.html">странице рецептов</a></small>`;
+  sparkleBurst(pickResult, 30);
+  if(rwHub) rwHub.classList.remove("spinning");
+  rwWheel.classList.remove("spinning");
+  rwHint.textContent = "жми на колесо — судьба выберет";
+  rwBusy = false;
+}
 
-// Open/Closed бейдж (пт 23:30–24:00 и сб круглосуточно по МСК)
+// Крути колесо
+function spinRoulette(){
+  if(rwBusy || !RECIPES.length){ return; }
+  rwBusy = true;
+  const r = RECIPES[Math.floor(Math.random()*RECIPES.length)];
+  pickResult.style.display = "none";
+  rwHint.textContent = "крутим… судьба думает 🎲";
+  rwWheel.classList.add("spinning");
+  rwHub.classList.add("spinning");
+  rwAngle += 360*5 + 180 + Math.random()*360; // 5+ оборотов + случайный доворот
+  rwWheel.style.transform = `rotate(${rwAngle}deg)`;
+  setTimeout(()=>revealResult(r), 3300);
+}
+
+rwWheel.addEventListener("click", spinRoulette);
+if(rwHub) rwHub.addEventListener("click", spinRoulette);
+window.addEventListener("resize", positionSegs);
+positionSegs();
+
+// Домики: sched — [вс,пн,вт,ср,чт,пт,сб] = [откр., закр.] в минутах с 00:00
+// ratingSrc: "Яндекс Карты" (источник оценки); map: "долгота,широта" для метки на карте
+const DOMIKI = [
+  {city:"Москва", name:"Ладожская", flag:"первый домик", addr:"ул. Ладожская, 7",
+   phone:"+7 999 988-19-04", email:"baum@kono.kr",
+    rating:"5.0", ratingInfo:"4851 оценка · 4058 отзывов", ratingSrc:"Яндекс Карты",
+   hours:["Ежедневно: 09:00–00:00"], map:"37.682542,55.771637",
+   sched:[[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440]]},
+  {city:"Москва", name:"Тверская", addr:"1-я Тверская-Ямская, 29с1",
+   phone:"+7 991 863-60-02", email:"tverskaya@kono.kr",
+    rating:"5.0", ratingInfo:"3738 оценок · 2964 отзыва", ratingSrc:"Яндекс Карты",
+    hours:["Круглосуточно"], map:"37.585401,55.775911",
+   sched:[[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440]]},
+  {city:"Москва", name:"Новослободская", addr:"ул. Новослободская, 18",
+   phone:"+7 977 642-48-23", email:"novoslobod@kono.kr",
+    rating:"5.0", ratingInfo:"570 оценок · 561 отзыв", ratingSrc:"Яндекс Карты",
+   hours:["Круглосуточно"], map:"37.599371,55.782324",
+   sched:[[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440]]},
+  {city:"Москва", name:"Аэропорт", addr:"Ленинградский просп., 62",
+   phone:"+7 996 361-17-94", email:"aeroport@kono.kr",
+    rating:"5.0", ratingInfo:"1408 оценок · 1284 отзыва", ratingSrc:"Яндекс Карты",
+    hours:["Круглосуточно"], map:"37.532398,55.800988",
+   sched:[[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440]]},
+  {city:"Москва", name:"Октябрьская", addr:"пл. Калужская, 1к1",
+   phone:"+7 977 698-82-35", email:"october@kono.kr",
+    rating:"5.0", ratingInfo:"661 оценка · 579 отзывов", ratingSrc:"Яндекс Карты",
+    hours:["Ежедневно: 09:00–00:00"], map:"37.611740,55.728213",
+   sched:[[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440]]},
+  {city:"Санкт-Петербург", name:"Восстания", addr:"ул. Восстания, 11",
+   phone:"+7 911 236-00-83", email:"vosst.spb@kono.kr",
+    rating:"5.0", ratingInfo:"1201 оценка · 1061 отзыв", ratingSrc:"Яндекс Карты",
+   hours:["Пн–Чт: 10:00–23:30","Пт–Сб: круглосуточно","Вс: 10:00–23:30"], map:"30.360495,59.933577",
+   sched:[[600,1430],[600,1430],[600,1430],[600,1430],[600,1430],[0,1440],[0,1440]]},
+  {city:"Краснодар", name:"Красная", addr:"ул. Красная, 102",
+   phone:"+7 918 476-60-60", email:"domik7.krd@kono.kr",
+    rating:"5.0", ratingInfo:"189 оценок · 115 отзывов", ratingSrc:"Яндекс Карты",
+   hours:["Пн–Пт: 10:00–24:00","Сб–Вс: круглосуточно"], map:"38.973316,45.032219",
+   sched:[[0,1440],[600,1440],[600,1440],[600,1440],[600,1440],[600,1440],[0,1440]]},
+  {city:"Саратов", name:"Столыпина", addr:"просп. им. Столыпина, 22",
+   phone:"+7 937 802-24-02", email:"domik8.sar@kono.kr",
+    rating:"5.0", ratingInfo:"406 оценок · 346 отзывов", ratingSrc:"Яндекс Карты",
+   hours:["Круглосуточно"], map:"46.029015,51.531319",
+   sched:[[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440],[0,1440]]},
+  {city:"Калининград", name:"Ленинский", addr:"Ленинский просп., 35",
+   phone:"+7 911 462-57-75", email:"kono_kld@mail.ru",
+    rating:"5.0", ratingInfo:"143 оценки · 106 отзывов", ratingSrc:"Яндекс Карты",
+   hours:["Чт–Вт: 10:00–22:00","Ср: 10:00–16:00"], map:"20.505002,54.715052",
+   sched:[[600,1320],[600,1320],[600,1320],[600,960],[600,1320],[600,1320],[600,1320]]}
+];
+let cur = 0; // по умолчанию первый домик сети — Москва, Ладожская
+function renderLocs(){
+  const list = document.getElementById("locList");
+  list.innerHTML = DOMIKI.map((d,i)=>`
+    <button class="loc-btn${i===cur?" active":""}" type="button" data-i="${i}">
+      <b>${d.city} · ${d.name}</b>
+      <span>${d.addr}</span>
+      ${d.flag?`<span class="loc-tag">★ ${d.flag}</span>`:""}
+    </button>`).join("");
+  list.querySelectorAll(".loc-btn").forEach(b=>b.addEventListener("click",()=>{
+    cur = +b.dataset.i; renderLocs(); renderDetail();
+  }));
+}
+function renderDetail(){
+  const d = DOMIKI[cur];
+  document.getElementById("dName").textContent = `${d.city} · ${d.name}`;
+  document.getElementById("dSub").textContent = d.flag ? `★ ${d.flag}` : "домик сети KONO";
+  document.getElementById("dAddr").textContent = d.addr;
+  document.getElementById("dHours").innerHTML = d.hours.join("<br>");
+  const ph = document.getElementById("dPhone");
+  ph.innerHTML = `<a href="tel:${d.phone.replace(/[^\d+]/g,"")}">${d.phone}</a>` + (d.email?`<small>${d.email}</small>`:"");
+  const rc = document.getElementById("dRatingCard");
+  if(d.rating){
+    rc.style.display = "flex";
+    document.getElementById("dRating").textContent = d.rating;
+    document.getElementById("dRatingInfo").textContent = d.ratingInfo;
+    document.getElementById("dRatingLabel").textContent = "Рейтинг " + (d.ratingSrc || "Яндекс Карты");
+  } else rc.style.display = "none";
+  const q = encodeURIComponent("Раменная KONO " + d.city + " " + d.addr);
+  document.getElementById("dMap").src = d.map
+    ? "https://yandex.ru/map-widget/v1/?text=" + q + "&ll=" + d.map + "&z=17&pt=" + d.map + ",pm2rdl"
+    : "https://yandex.ru/map-widget/v1/?text=" + q + "&z=16";
+  openStatus();
+}
+// Open/Closed бейдж по расписанию выбранного домика (МСК)
 function openStatus(){
-  const n = new Date(); const h = n.getHours(), m = n.getMinutes(), d = (n.getDay()+6)%7; // 0=пн
+  const n = new Date(); const h = n.getHours(), m = n.getMinutes(), day = n.getDay();
   const mins = h*60+m;
-  let open;
-  if(d===4) open = mins>=600 && mins<1430;      // пт 10:00–23:30
-  else if(d===5) open = true;                    // сб круглосуточно
-  else if(d===6) open = mins>=600 && mins<1430;  // вс 10:00–23:30
-  else open = mins>=600 && mins<1430;            // пн–чт 10:00–23:30
+  const s = DOMIKI[cur].sched[day];
+  const open = s && mins>=s[0] && mins<s[1];
   const el = document.getElementById("openBadge");
   el.classList.toggle("closed", !open);
   el.textContent = open ? "Сейчас открыто" : "Сейчас закрыто";
 }
-openStatus(); setInterval(openStatus, 60000);
+renderLocs(); renderDetail();
+setInterval(openStatus, 60000);
 
 // Бургер
 document.getElementById("burger").addEventListener("click", ()=>{
   document.getElementById("navLinks").classList.toggle("open");
 });
 </script>
+<script src="fx.js"></script>
 </body>
 </html>
