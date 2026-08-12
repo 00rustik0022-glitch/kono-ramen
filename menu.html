@@ -75,7 +75,14 @@ img{max-width:100%;display:block}
 }
 .hero h1 em{color:var(--cream);font-style:normal;display:block}
 .hero-sub{color:#EFFFFA;font-size:18.5px;font-weight:600;max-width:640px;margin:0 auto 30px;line-height:1.65}
-.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;flex-direction:column;align-items:center}
+.hero-actions .btn{width:100%;max-width:280px;justify-content:center}
+.hero-chip{
+  display:inline-block;margin-top:20px;background:var(--cream);color:var(--ink);
+  font-weight:900;font-size:14.5px;padding:11px 22px;border-radius:999px;
+  border:3px solid var(--ink);box-shadow:var(--shadow-sm);transition:.15s;
+}
+.hero-chip:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
 .btn{
   display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:16px;
   border:3px solid var(--ink);font-weight:900;font-size:15.5px;cursor:pointer;
@@ -85,7 +92,7 @@ img{max-width:100%;display:block}
 .btn-orange{background:var(--orange);color:#fff}
 .btn-white{background:#fff}
 .hero-link{
-  display:inline-block;margin-top:24px;background:transparent;color:#EFFFFA;
+  display:block;width:fit-content;margin:24px auto 0;background:transparent;color:#EFFFFA;
   font-weight:800;font-size:14.5px;padding:10px 4px;border-bottom:3px solid var(--cream);
 }
 .hero-link:hover{color:#fff}
@@ -214,9 +221,9 @@ footer{background:var(--ink);color:#fff;position:relative}
       <h1>Рамен — <em>на любой вкус</em></h1>
       <p class="hero-sub">Всё, что стоит на полках домиков KONO: от культового бульдака до сливочной карбонары.</p>
       <div class="hero-actions">
-        <a href="#menu" class="btn btn-orange">🍜 Смотреть меню</a>
-        <a href="index.html#address" class="btn btn-white">📍 Наши адреса</a>
+        <a href="index.html#address" class="btn btn-orange">📍 Наши адреса</a>
       </div>
+      <a href="recipes.html" class="hero-chip">🍜 Рецепты →</a>
       <a href="index.html" class="hero-link">← На главную</a>
     </div>
   </div>
