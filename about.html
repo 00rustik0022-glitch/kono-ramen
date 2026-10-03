@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>О KONO — история, формат и команда</title>
-<meta name="description" content="Как корейские круглосутки KONO приехали из Сеула в Россию: первый домик, формат «готовь сам», атмосфера аниме и 8 домиков в 4 городах.">
+<meta name="description" content="Как корейские круглосутки KONO приехали из Сеула в Россию: первый домик, формат «готовь сам», атмосфера аниме и 7 домиков в 3 городах.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='28' fill='%23FF5500'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='white' font-family='Arial Black' font-weight='900'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,11 +193,14 @@ footer{background:var(--ink);color:#fff;position:relative}
 }
 @media(max-width:680px){
   .nav-links{
-    display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);
-    flex-direction:column;align-items:stretch;padding:16px 20px;gap:10px;border-bottom:3px solid var(--ink);
+    position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:stretch;padding:12px 16px;gap:10px;
+    transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:transform .25s ease,opacity .25s ease,visibility .25s ease;
   }
-  .nav-links.open{display:flex}
+  .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
   .nav-links a{text-align:center;padding:13px;background:#fff;border:2px solid var(--ink);border-radius:14px}
+  .nav-links a.nav-cta{background:var(--orange);color:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
   .burger{display:block}
   .why-grid,.team-grid{grid-template-columns:1fr}
   .tl-item{padding-left:66px}
@@ -285,7 +288,7 @@ footer{background:var(--ink);color:#fff;position:relative}
         <div class="tl-num">04</div>
         <div class="tl-card big">
           <h4>Сегодня</h4>
-          <p>KONO — это <b>8 домиков в 4 городах</b> и свой телеграм-канал, где мемы, эдиты и раменчик — каждый день. Но формула та же: вкусный рамен и искренняя атмосфера.</p>
+          <p>KONO — это <b>7 домиков в 3 городах</b> и свой телеграм-канал, где мемы, эдиты и раменчик — каждый день. Но формула та же: вкусный рамен и искренняя атмосфера.</p>
         </div>
       </div>
     </div>
@@ -374,7 +377,7 @@ footer{background:var(--ink);color:#fff;position:relative}
       <div class="why-card">
         <div class="wico" style="background:#FFE3D1">📈</div>
         <h4>Растём быстро</h4>
-        <p>Первый домик открылся в <b>августе 2024</b>, а уже сегодня KONO — это 8 домиков в 4 городах. Планы — ещё десятки точек по стране, в том числе новые города.</p>
+        <p>Первый домик открылся в <b>августе 2024</b>, а уже сегодня KONO — это 7 домиков в 3 городах. Планы — ещё десятки точек по стране, в том числе новые города.</p>
       </div>
       <div class="why-card">
         <div class="wico" style="background:#FFE9B8">🧑‍🍳</div>

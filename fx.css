@@ -55,6 +55,6 @@
 /* ============ МЕЛОЧИ ============ */
 .nav.scrolled{box-shadow:0 4px 14px rgba(35,31,27,.14)}
 @media(prefers-reduced-motion:reduce){
-  .marquee-track{animation:none !important}
+  .marquee-track{animation-duration:24s !important}
   [data-parallax],[data-tilt]{transform:none !important}
 }

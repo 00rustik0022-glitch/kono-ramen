@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KONO — корейская рамённая · выбирай лапшу и готовь сам</title>
-<meta name="description" content="Рамённая нового формата: выбирай лапшу, топпинги и готовь, как в Корее. Москва, СПб, Саратов, Калининград.">
+<meta name="description" content="Рамённая нового формата: выбирай лапшу, топпинги и готовь, как в Корее. Москва, Саратов, Калининград.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='28' fill='%23FF5500'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='white' font-family='Arial Black' font-weight='900'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,6 @@ img{max-width:100%;display:block}
 }
 .nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
 .burger{display:none;background:var(--ink);color:#fff;border:0;width:44px;height:44px;border-radius:12px;font-size:22px;cursor:pointer}
-
 /* ============ HERO ============ */
 .hero{
   position:relative;background:var(--teal);isolation:isolate;
@@ -187,7 +186,8 @@ img{max-width:100%;display:block}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* ============ SECTION HEAD ============ */
-.sec{padding:88px 0}
+.sec{padding:88px 0;scroll-margin-top:80px}
+#address{scroll-margin-top:80px}
 .sec-head{max-width:720px;margin:0 auto 54px;text-align:center;position:relative}
 .sec-head .tag{
   display:inline-block;background:var(--orange);color:#fff;border:3px solid var(--ink);
@@ -378,22 +378,28 @@ img{max-width:100%;display:block}
 .loc-map{border:4px solid var(--ink);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;min-height:380px}
 .loc-map iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
 
-/* ============ CITIES ============ */
-#cities{background:var(--cream)}
-#cities .sec-head p{color:#4A443D}
-.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.city{
-  background:var(--paper);border:3px solid var(--ink);border-radius:16px;padding:22px 18px;
-  text-align:center;box-shadow:var(--shadow);transition:.18s;
-}
-.city:hover{transform:translate(-3px,-3px) rotate(-1deg)}
-.city .city-n{
-  width:58px;height:58px;border-radius:50%;background:var(--orange);color:#fff;
-  display:flex;align-items:center;justify-content:center;margin:0 auto;
-  font-family:'Unbounded';font-weight:900;font-size:26px;box-shadow:var(--shadow-sm);border:3px solid var(--ink);
-}
-.city h4{font-weight:900;font-size:16.5px;margin:14px 0 6px}
-.city p{font-size:13px;color:var(--text-dim);font-weight:600}
+/* ============ YOUTUBE BAR ============ */
+.yt-bar-wrap{max-width:600px;margin:0 auto;padding:10px 0}
+#ytbar{padding:40px 0}
+.yt-bar-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.yt-bar-icon{width:40px;height:40px;border-radius:10px;background:#FF0000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yt-bar-icon svg{width:22px;height:22px;fill:#fff}
+.yt-bar-head-text h4{font-size:17px;font-weight:800;margin:0}
+.yt-bar-head-text p{margin:0;font-size:13px;color:var(--text-dim)}
+.yt-bar-num{margin-left:auto;font-family:'Unbounded';font-weight:900;font-size:24px;color:var(--orange);white-space:nowrap}
+.yt-bar-num small{display:block;font-size:11px;font-weight:600;color:var(--text-dim);font-family:Inter,sans-serif;text-align:right}
+.yt-bar-track{position:relative;height:40px;background:#F0E8DA;border:3px solid var(--ink);border-radius:12px;overflow:hidden}
+.yt-bar-fill{height:100%;background:#FF0000;border-radius:9px 0 0 9px;transition:width 1.2s ease;position:relative;overflow:hidden}
+.yt-bar-fill::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(110deg,transparent,transparent 8px,rgba(255,255,255,.08) 8px,rgba(255,255,255,.08) 16px)}
+.yt-bar-marks{display:flex;justify-content:space-between;margin-top:6px;padding:0 2px}
+.yt-bar-mark{font-size:12px;font-weight:700;color:var(--text-dim)}
+.yt-bar-mark strong{color:var(--ink)}
+.yt-bar-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:10px}
+.yt-bar-views{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--ink)}
+.yt-bar-views span{font-family:'Unbounded';font-weight:900;font-size:20px;color:var(--orange)}
+.yt-bar-link{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;background:#FF0000;color:#fff;font-weight:700;font-size:14px;text-decoration:none;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);transition:.15s}
+.yt-bar-link:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);background:#e60000}
+.yt-deco{position:absolute;right:30px;top:50%;transform:translateY(-50%);opacity:.06;font-size:80px;pointer-events:none;font-weight:900;font-family:'Unbounded'}
 
 /* ============ SOCIAL ============ */
 #social{background:var(--paper);position:relative;overflow:hidden}
@@ -440,7 +446,6 @@ footer{background:var(--ink);color:#fff;position:relative}
   .format-grid,.atmos-grid{grid-template-columns:1fr 1fr}
   .atmos-quotes{grid-template-columns:1fr}
   .vibes-grid{grid-template-columns:1fr}
-  .cities{grid-template-columns:repeat(2,1fr)}
   .menu-grid{grid-template-columns:1fr}
   .social-grid{grid-template-columns:1fr 1fr}
   .memes-grid{columns:2}
@@ -449,21 +454,25 @@ footer{background:var(--ink);color:#fff;position:relative}
   .hero-poster{margin-bottom:26px}
   .hero h1{margin-bottom:20px}
   .hero-sub{margin:0 auto 26px}
+  .yt-counter{padding:5px 10px}
+  .yt-stats{font-size:12px;gap:5px}
   .hero-actions{justify-content:center}
   .hero .btn{padding:16px 30px;font-size:16px}
-  .marquee{margin-top:-6px}
+  .marquee{margin-top:-6px;transform:none}
   .marquee-track{font-size:15px}
 }
 @media(max-width:680px){
   .nav-links{
-    display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);
-    flex-direction:column;align-items:stretch;padding:16px 20px;gap:10px;border-bottom:3px solid var(--ink);
+    position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    flex-direction:column;align-items:stretch;padding:12px 16px;gap:10px;
+    transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:transform .25s ease,opacity .25s ease,visibility .25s ease;
   }
-  .nav-links.open{display:flex}
+  .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
   .nav-links a{text-align:center;padding:13px;background:#fff;border:2px solid var(--ink);border-radius:14px}
+  .nav-links a.nav-cta{background:var(--orange);color:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
   .burger{display:block}
   .format-grid,.atmos-grid{grid-template-columns:1fr}
-  .cities{grid-template-columns:1fr 1fr}
   .social-grid{grid-template-columns:1fr}
   .memes-grid{columns:1}
   .hero{padding:60px 0 70px}
@@ -482,8 +491,8 @@ footer{background:var(--ink);color:#fff;position:relative}
     </a>
     <button class="burger" id="burger" aria-label="Меню">☰</button>
     <div class="nav-links" id="navLinks">
-<a href="about.html">О KONO</a>
-<a href="#format">Формат</a>
+      <a href="about.html">О KONO</a>
+      <a href="#format">Формат</a>
       <a href="menu.html">Меню</a>
       <a href="#roulette">Рулетка</a>
       <a href="recipes.html">Рецепты</a>
@@ -512,7 +521,7 @@ footer{background:var(--ink);color:#fff;position:relative}
       <div class="mp-small" data-tilt data-tilt-rotate="2">Рамён, от которого мурашки 🍜</div>
     </div>
     <h1>Рамен по <em>твоим правилам</em></h1>
-    <p class="hero-sub">Выбираешь лапшу, платишь, готовишь сам на индукционной плитке — как в Сеуле. 8 домиков в 4 городах.</p>
+    <p class="hero-sub">Выбираешь лапшу, платишь, готовишь сам на индукционной плитке — как в Сеуле. 7 домиков в 3 городах.</p>
     <div class="hero-actions">
       <a href="menu.html" class="btn btn-orange">🍜 Смотреть меню</a>
     </div>
@@ -549,7 +558,7 @@ footer{background:var(--ink);color:#fff;position:relative}
         <p>Всё как в уличных корейских закусочных: полки с мангой, аниме на экранах, банановое и дынное молоко, соусы бульдак для любителей острого. Ты приходишь как гость, а уходишь как постоянный.</p>
         <div class="about-feats">
           <div class="feat"><b>5 мин</b>от выбора до готовки</div>
-          <div class="feat"><b>8</b>домиков в 4 городах</div>
+          <div class="feat"><b>7</b>домиков в 3 городах</div>
           <div class="feat"><b>5.0★</b>на Яндекс Картах</div>
           <div class="feat"><b>24/7</b>в ряде домиков</div>
         </div>
@@ -792,27 +801,38 @@ footer{background:var(--ink);color:#fff;position:relative}
   </div>
 </section>
 
-<section class="sec" id="cities" style="position:relative;overflow:hidden">
-  <svg class="fx-pattern" aria-hidden="true" data-parallax="0.18" style="opacity:.13">
-    <defs>
-      <pattern id="patTaegeuk" width="100" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.26)">
-        <path d="M50 0A50 50 0 0 1 100 50A25 25 0 0 1 50 50A25 25 0 0 0 0 50A50 50 0 0 1 50 0Z" fill="#FF5500"/>
-        <path d="M50 100A50 50 0 0 1 0 50A25 25 0 0 0 50 50A25 25 0 0 1 100 50A50 50 0 0 1 50 100Z" fill="#009B85"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#patTaegeuk)"/>
-  </svg>
+<section class="sec" id="ytbar" style="background:var(--cream);position:relative;overflow:hidden">
+  <div class="yt-deco">▶</div>
   <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">Города</span>
-      <h2>8 домиков в <em>4 городах</em></h2>
-      <p>Мы растем как на дрожжах. Следи за анонсами новых домиков в наших соцсетях.</p>
-    </div>
-    <div class="cities">
-      <div class="city"><div class="city-n">5</div><h4>Москва</h4><p>пять домиков</p></div>
-      <div class="city"><div class="city-n">1</div><h4>Санкт-Петербург</h4><p>Восстания, 11</p></div>
-      <div class="city"><div class="city-n">1</div><h4>Саратов</h4><p>Столыпина, 22</p></div>
-      <div class="city"><div class="city-n">1</div><h4>Калининград</h4><p>Ленинский, 35</p></div>
+    <div class="yt-bar-wrap">
+      <div class="yt-bar-top">
+        <div class="yt-bar-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="yt-bar-head-text">
+          <h4>Наш YouTube</h4>
+          <p>Мемы, рилсы и анонсы новых домиков</p>
+        </div>
+        <div class="yt-bar-num" id="ytBarNum">—<small>подписчиков</small></div>
+      </div>
+      <div class="yt-bar-track">
+        <div class="yt-bar-fill" id="ytFill" style="width:20%"></div>
+      </div>
+      <div class="yt-bar-marks">
+        <span class="yt-bar-mark"><strong>0</strong></span>
+        <span class="yt-bar-mark"><strong>250K</strong></span>
+        <span class="yt-bar-mark"><strong>500K</strong></span>
+        <span class="yt-bar-mark"><strong>800K</strong></span>
+        <span class="yt-bar-mark"><strong>1M</strong></span>
+      </div>
+      <div class="yt-bar-bottom">
+        <div class="yt-bar-views" id="ytViewsWrap" style="display:none">
+          👁 <span id="ytViewsNum">—</span> просмотров
+        </div>
+        <a href="https://youtube.com/@kono_ramen" target="_blank" rel="noopener" class="yt-bar-link">
+          Подписаться →
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1004,11 +1024,6 @@ const DOMIKI = [
     rating:"5.0", ratingInfo:"661 оценка · 579 отзывов", ratingSrc:"Яндекс Карты",
     hours:["Ежедневно: 09:00–00:00"], map:"37.611740,55.728213",
    sched:[[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440],[540,1440]]},
-  {city:"Санкт-Петербург", name:"Восстания", addr:"ул. Восстания, 11",
-   phone:"+7 911 236-00-83", email:"vosst.spb@kono.kr",
-    rating:"5.0", ratingInfo:"1201 оценка · 1061 отзыв", ratingSrc:"Яндекс Карты",
-   hours:["Пн–Чт: 10:00–23:30","Пт–Сб: круглосуточно","Вс: 10:00–23:30"], map:"30.360495,59.933577",
-   sched:[[600,1430],[600,1430],[600,1430],[600,1430],[600,1430],[0,1440],[0,1440]]},
   {city:"Саратов", name:"Столыпина", addr:"просп. им. Столыпина, 22",
    phone:"+7 937 802-24-02", email:"domik8.sar@kono.kr",
     rating:"5.0", ratingInfo:"406 оценок · 346 отзывов", ratingSrc:"Яндекс Карты",
@@ -1071,6 +1086,26 @@ setInterval(openStatus, 60000);
 document.getElementById("burger").addEventListener("click", ()=>{
   document.getElementById("navLinks").classList.toggle("open");
 });
+document.querySelectorAll(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>{document.getElementById("navLinks").classList.remove("open")});
+});
+</script>
+<script>
+fetch('/api/youtube').then(r=>r.json()).then(d=>{
+  if(d.subscribers){
+    var pct=Math.min(d.subscribers/1000000*100,100);
+    var fill=document.getElementById('ytFill');
+    var num=document.getElementById('ytBarNum');
+    if(fill) fill.style.width=pct+'%';
+    if(num) num.innerHTML=d.subscribersShort+'<small>подписчиков</small>';
+  }
+  if(d.viewsShort){
+    var wn=document.getElementById('ytViewsNum');
+    var ww=document.getElementById('ytViewsWrap');
+    if(wn) wn.textContent=d.viewsShort;
+    if(ww) ww.style.display='flex';
+  }
+}).catch(()=>{});
 </script>
 <script src="fx.js"></script>
 </body>
